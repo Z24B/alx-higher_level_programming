@@ -7,8 +7,7 @@ class Square:
     This class defines a square.
 
     Attributes:
-    - __size (int): Private instance attribute representing the size of square.
-    - __position (tuple): Private instance attribute representing the position of square.
+    - __size (int): size of a square (1 side)
     """
 
     def __init__(self, size=0, position=(0, 0)):
@@ -16,12 +15,12 @@ class Square:
         Initializes a new instance of the Square class.
 
         Parameters:
-        - size (int, optional): The size of the square. Defaults to 0.
-        - position (tuple, optional): The position of the square. Defaults to (0, 0).
+        size (int, optional): The size of the square. Defaults to 0.
+        position (tuple, optional): The position of the square. Defaults to (0, 0).
 
         Raises:
-        - TypeError: If size is not integer, or position is not a tuple of 2 positive integers.
-        - ValueError: If size is less than 0, or position contains non-positive integers.
+        TypeError: If size is not integer, or position is not a tuple of 2 positive integers.
+        ValueError: If size is less than 0, or position contains non-positive integers.
         """
         self.size = size
         self.position = position
@@ -42,11 +41,11 @@ class Square:
         Setter method for the size attribute.
 
         Parameters:
-        - value (int): The size to set.
+        value (int): The size to set.
 
         Raises:
-        - TypeError: If value is not an integer.
-        - ValueError: If value is less than 0.
+        TypeError: If value is not an integer.
+        ValueError: If value is less than 0.
         """
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
@@ -72,11 +71,11 @@ class Square:
         Setter method for the position attribute.
 
         Parameters:
-        - value (tuple): The position to set.
+        value (tuple): The position to set.
 
         Raises:
-        - TypeError: If value is not a tuple of 2 positive integers.
-        - ValueError: If value contains non-positive integers.
+        TypeError: If value is not a tuple of 2 positive integers.
+        ValueError: If value contains non-positive integers.
         """
         if not isinstance(value, tuple) or len(value) != 2:
             raise TypeError("position must be a tuple of 2 positive integers")
