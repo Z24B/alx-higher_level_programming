@@ -9,10 +9,15 @@ class Square(Rectangle):
     """Class Square inherits from Rectangle."""
 
     def __init__(self, size):
-        """Initialize the Square with size."""
+        """Method for initializing a square"""
         self.integer_validator("size", size)
+        self.__size = size
         super().__init__(size, size)
 
+    def area(self):
+        """Method that returns area of a square"""
+        return self.__size ** 2
+
     def __str__(self):
-        """Return the square description."""
-        return f"[Square] {self._Rectangle__width}"
+        """Method that returns a string"""
+        return "[Square] {}/{}".format(self.__size, self.__size)
