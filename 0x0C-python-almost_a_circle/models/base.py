@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """File containing base.py module"""
 import json
+import csv
 
 
 class Base:
