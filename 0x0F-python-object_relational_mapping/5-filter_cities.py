@@ -4,6 +4,9 @@ import MySQLdb
 from sys import argv
 
 if __name__ == "__main__":
+
+    state_name = argv[4]
+
     # Connect to MySQL server
     db = MySQLdb.connect(
             host="localhost",
@@ -17,16 +20,22 @@ if __name__ == "__main__":
     # Create a cursor object
     cur = db.cursor()
 
-    # Execute SQL query
-    cur.execute("""
-        SELECT cities.name FROM cities
-        JOIN states ON cities.state_id = states.id
-        WHERE states.name = %s
-        ORDER BY cities.id ASC
-        """, (argv[4], ))
+    # Execute SQL query safely
+    query = """
+    SELECT GROUP_CONCAT(DISTINCT cities.name SEPARATOR ', ')
+    FROM cities
+    JOIN states ON cities.state_id = states.id
+    WHERE states.name = %s
+    ORDER BY cities.id ASC
+    """
+    cur.execute(query, (state_name,))
 
-    # Fetch unique city names
-    cities = set(row[0] for row in cur.fetchall())
-    print(", ".join(cities))
+    # Fetch the result
+    result = cur.fetchone()[0]
+    if result:
+        print(result)
+    else:
+        print("")
+
     cur.close()
     db.close()
