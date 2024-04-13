@@ -24,5 +24,5 @@ if __name__ == "__main__":
     # Delete the State objects
     for state in states_with_a:
         session.delete(state)
-        session.commit()
-        session.close()
+    session.commit()
+    session.close()
