@@ -1,10 +1,9 @@
 #!/usr/bin/python3
-"""Script that lists all cities of a given state"""
+"""Script lists all cities of a state"""
 import MySQLdb
 from sys import argv
 
 if __name__ == "__main__":
-    # MySQL connection parameters
     username = argv[1]
     password = argv[2]
     database = argv[3]
@@ -25,22 +24,23 @@ if __name__ == "__main__":
 
     # Execute SQL query safely
     query = """
-    SELECT GROUP_CONCAT(DISTINCT cities.name SEPARATOR ', ')
+    SELECT GROUP_CONCAT(cities.name SEPARATOR ', ')
     FROM cities
-    JOIN states ON cities.state_id = states.id
+    INNER JOIN states ON cities.state_id = states.id
     WHERE states.name = %s
     ORDER BY cities.id ASC
     """
     cur.execute(query, (state_name,))
 
-    # Fetch the result
-    result = cur.fetchone()[0]
+    # Fetch all rows
+    row = cur.fetchone()
 
     # Display results
-    if result:
-        print(result)
+    if row[0]:
+        print(row[0])
     else:
         print("")
 
+    # Close cursor and database connection
     cur.close()
     db.close()
