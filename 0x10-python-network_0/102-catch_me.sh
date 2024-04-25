@@ -1,3 +1,3 @@
 #!/bin/bash
-# This script makes a request to 0.0.0.0:5000/catch_me and causes the server to respond with "You got me!"
-curl -s -X PUT -L -d "user_id=98" "0.0.0.0:5000/catch_me"
+# script makes request to 0.0.0.0:5000/catch_me and causes server to respond with "You got me!"
+curl -s -H "Content-Type: application/json" -d "$(cat "$2")" "$1"
