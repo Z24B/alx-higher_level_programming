@@ -7,6 +7,7 @@ request(apiUrl, (error, response, body) => {
     console.error(error);
   } else if (response.statusCode === 200) {
     const movie = JSON.parse(body);
+
     movie.characters.forEach(characterUrl => {
       request(characterUrl, (error, response, body) => {
         if (error) {
